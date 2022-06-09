@@ -10,3 +10,4 @@ class DataPrepForm(forms.Form):
     websiteBaseUrl = forms.CharField(label='Enter base URL for faculty website page ')
     allOnePage = forms.BooleanField(label='Are all faculty bio in one page?', required=False)
     file = forms.FileField(label='Select the file for data preparations step ')
+

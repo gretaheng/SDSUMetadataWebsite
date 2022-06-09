@@ -27,7 +27,7 @@ def dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allO
     filepath = basePath + filename
     file_name = filepath
 
-    filename = filename[:len(filename) - 3]
+    filename = filename[:len(filename) - 4]
 
     df = pd.read_csv(file_name)
     print("Total records in original file: ", len(df))
@@ -103,6 +103,10 @@ def runDataPrepForForm(basePath, filename, fieldQnum, departmentQnum, websiteBas
     except BaseException as error:
         return 'An exception occurred: {} {}'.format(error, basePath+filename)
 
-    return '\nSUCCESS: Data preparation completed. New csv file with \"ready4or\" as suffix created.\n'
+    respond = {
+        'message': 'SUCCESS: Data preparation completed. New csv file with \"ready4or\" as suffix created.',
+        'file': basePath+filename
+    }
+    return respond
 
 # python dataPrep.py

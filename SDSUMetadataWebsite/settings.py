@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Project Apps
     'homepage.apps.HomepageConfig',
     'dataprep.apps.DataprepConfig',
+    'openrefine.apps.OpenrefineConfig',
 ]
 
 MIDDLEWARE = [

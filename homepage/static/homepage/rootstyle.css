@@ -18,7 +18,19 @@
     float: right;
 }
 
+.back {
+    float: left;
+}
+
 .dataprep{
     margin-top: 5%;
+}
+
+.success {
+    color: green;
+}
+
+.fail {
+    color: darkred;
 }
 

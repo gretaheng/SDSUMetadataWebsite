@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.dataprep, name='dataprep'),
+    path('', views.openrefine, name='openrefine'),
 ]

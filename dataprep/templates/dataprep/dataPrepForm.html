@@ -3,16 +3,29 @@
 
 {% block content %}
     <div class="container dataprep">
-        <h4>Please provide below inputs before we begin data preparation.</h4> <br/>
 
-        {% if submitted %}
-            {{ message }}
+        {% if contextData.message %}
+            {% if 'SUCCESS' in contextData.message %}
+                <div class="container intro">
+                    <p class="success">{{contextData.message}}</p>
+                    <br/>
+                    <p>Next Step: Start 'Open Refine' locally and press 'Next'.</p>
+                    <a href = "/openrefine" class="btn btn-primary start">Next</a>
+                </div>
+            {% else %}
+                <div class="container intro">
+                    <p class="fail">Failed{{ contextData.message }}</p>
+                    <a href="/" class="btn btn-primary back">Back</a>
+                </div>
+           {% endif %}
+
         {% else %}
+            <h4>Please provide below inputs before we begin data preparation.</h4> <br/>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
 
-                <input type="submit" value="Start" class="btn btn-success start">
+                <input type="submit" value="Start" class="btn btn-primary start">
 
             </form>
 
