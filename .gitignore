@@ -1,6 +1,4 @@
 .env
-user-password.py
-user-config.py
 throttle.ctrl
 pywikibot.lwp
 venv/
