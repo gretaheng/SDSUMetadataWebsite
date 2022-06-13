@@ -23,7 +23,7 @@ def change_name_LC(name):
     return rn
 
 
-def dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage):
+def dataPrep(basePath, filename, collegeQnum, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage):
     filepath = basePath + filename
     file_name = filepath
 
@@ -38,7 +38,7 @@ def dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allO
     df["web"] = np.nan
 
     # CHANGE COLLEGE QNUM
-    df["Qcol"] = "Q7413726"  # CAL
+    df["Qcol"] = collegeQnum  # CAL
 
     df["FieldQnum"] = fieldQnum
 
@@ -49,6 +49,7 @@ def dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allO
     df["FacultyNameForLC"] = df["FacultyNameForLC"].astype(str)
     df["LCnum"] = df["LCnum"].astype(str)
     df["web"] = df["web"].astype(str)
+
 
     df1 = df.copy()
     for i, r in df.iterrows():
@@ -72,6 +73,9 @@ def dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allO
                 status = response.status_code
                 if status == 200:
                     df1.at[i, "web"] = website
+                print("website ", website)
+
+        print("Success", i)
 
         # When no school is present, bot does not add degree to wikidata. Overload for open refine. Hence removed
         if df1.at[i, "education.school"] == '':
@@ -79,27 +83,13 @@ def dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allO
 
         # CHANGE FILEPATH AND FILENAME
         df1.to_csv(basePath + filename + "_ready4or.csv", encoding="utf8")
+        print("File save Success.")
 
     print("Total records in new file: ", len(df1))
 
-
-# if __name__ == '__main__':
-#     print("Runnning Data Prep for College of Arts and Letter. Please answer few questions before we begin.\n")
-#
-#     # Can we asked to user
-#     basePath = '/Users/sprasad/Documents/SDSU/CAL/'
-#
-#     fieldQnum = str(input("Enter field of study (wikidata id): "))
-#     departmentQnum = str(input("Enter Department at SDSU (wikidata id): "))
-#     websiteBaseUrl = str(input("Enter department's people website's base url: "))
-#     allOnePage = str(input("Are all faculty bio on one page? [\'Y\' \\ \'N\']: "))
-#     deptfolder = str(input("\nEnter folder name: ")) + '/'
-#     filename = str(input("Enter file name (without extension): "))
-#
-#     fileExtention = '.csv'
-def runDataPrepForForm(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage):
+def runDataPrepForForm(basePath, filename, collegeQnum, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage):
     try:
-        dataPrep(basePath, filename, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage)
+        dataPrep(basePath, filename, collegeQnum, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage)
     except BaseException as error:
         return 'An exception occurred: {} {}'.format(error, basePath+filename)
 

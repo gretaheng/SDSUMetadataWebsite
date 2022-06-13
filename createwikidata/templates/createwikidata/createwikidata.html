@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container dataprep">
+
+        {% if contextData.message %}
+            {% if 'SUCCESS' in contextData.message %}
+                <div class="container intro">
+                    <p class="success">{{contextData.message}}</p>
+                    <br/>
+                    <p>Process complete. Please refer file provided for ids of new items.</p>
+                    <a href="{% url 'downloadFile' %}" download class="btn btn-secondary back">Download</a>
+
+                    <a href = "/" class="btn btn-primary start">Home</a>
+                </div>
+            {% else %}
+                <div class="container intro">
+                    <p class="fail">Failed{{ contextData.message }}</p>
+                    <a href="/" class="btn btn-primary back">Home</a>
+                </div>
+           {% endif %}
+
+        {% else %}
+            <h4>Please select the file for creation of wikidata.</h4> <br/>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" value="Start" class="btn btn-primary start">
+
+            </form>
+
+        {% endif %}
+    </div>
+
+{% endblock %}

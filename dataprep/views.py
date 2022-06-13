@@ -16,6 +16,7 @@ def dataprep(request):
         faculties = DataPrep()
 
         if form.is_valid():
+            faculties.collegeQnum = form.cleaned_data['collegeQnum']
             faculties.fieldQnum = form.cleaned_data['fieldQnum']
             faculties.departmentQnum = form.cleaned_data['departmentQnum']
             faculties.websiteBaseUrl = form.cleaned_data['websiteBaseUrl']
@@ -23,7 +24,7 @@ def dataprep(request):
             faculties.file = form.cleaned_data['file']
             faculties.save()
 
-            respond = runDataPrepForForm(settings.MEDIA_ROOT+'/', str(faculties.file), faculties.fieldQnum,
+            respond = runDataPrepForForm(settings.MEDIA_ROOT+'/', str(faculties.file), faculties.collegeQnum, faculties.fieldQnum,
                                          faculties.departmentQnum, faculties.websiteBaseUrl,
                                          faculties.allOnePage)
 

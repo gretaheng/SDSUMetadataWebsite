@@ -24,7 +24,7 @@ def openrefine(request):
         timerprint(10)
         nextReady = True
         [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
-        return redirect('/openrefine', {'nextReady': nextReady, 'response': response})
+        return render(request, 'openrefine/openrefine.html', {'nextReady': nextReady, 'response': response})
     else:
         form = OpenRefineForm
 

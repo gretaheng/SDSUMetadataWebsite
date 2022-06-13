@@ -19,9 +19,9 @@ chrome_options.add_experimental_option("detach", True)
 def timerprint(seconds):
     for i in range(seconds, 0, -1):
         sys.stdout.write("\r")
-        sys.stdout.write("Time Remaining: {0}".format(i))
+        sys.stdout.write("Remaining: {:02d}s".format(i))
         time.sleep(1)
-    sys.stdout.write("\rTime up...\n")
+    sys.stdout.write("\r\r....Time up....\n")
 
 
 def openRefineSteps(filename):
@@ -185,9 +185,9 @@ def openRefineSteps(filename):
 
     time.sleep(4)
 
-    return "SUCCESS: OpenRefine project ready for manual review." +\
-           "1. Check all websites." + \
-           "2. Check and remove unnecessary LC urls." + \
-           "3. Check and adjust Faculty name and wikidata links or create new." + \
-           "4. Add FQnum and verify DegreeQnum and SchoolQnum." + \
-           "5. Export to CSV once review is completed."
+    return "SUCCESS: OpenRefine project ready for manual review.\n" +\
+           "1. Check all websites.\n" + \
+           "2. Check and remove unnecessary LC urls.\n" + \
+           "3. Check and adjust Faculty name and wikidata links or create new.\n" + \
+           "4. Add FQnum and verify DegreeQnum and SchoolQnum.\n" + \
+           "5. Export to CSV once review is completed.\n"

@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class DataPrep(models.Model):
+    collegeQnum = models.CharField(max_length=20, default='')
     fieldQnum = models.CharField(max_length=20)
     departmentQnum = models.CharField(max_length=20)
     websiteBaseUrl = models.CharField(max_length=100)

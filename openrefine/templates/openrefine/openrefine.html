@@ -5,10 +5,10 @@
 
     {% if nextReady %}
         <div class="container intro">
-            {{ response }}
+            <p class="success">{{ response }}</p>
             <p>Once complete click 'Continue'.</p>
         </div>
-        <a href="/" class="btn btn-primary start">Continue</a>
+        <a href="/createwikidata" class="btn btn-primary start">Continue</a>
     {% else %}
         {% if file == '' %}
             <div class="container intro">

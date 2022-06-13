@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('homepage.urls')),
     path('dataprep/', include('dataprep.urls')),
     path('openrefine/', include('openrefine.urls')),
+    path('createwikidata/', include('createwikidata.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

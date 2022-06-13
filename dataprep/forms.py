@@ -4,7 +4,7 @@ from .models import DataPrep
 # Create a data prep input from
 class DataPrepForm(forms.Form):
     model = DataPrep
-
+    collegeQnum = forms.CharField(label='Enter College item ID ')
     fieldQnum = forms.CharField(label='Enter Wikidata item ID for Field of Study ')
     departmentQnum = forms.CharField(label='Enter Wikidata item ID for Department ')
     websiteBaseUrl = forms.CharField(label='Enter base URL for faculty website page ')

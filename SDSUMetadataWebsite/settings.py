@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'homepage.apps.HomepageConfig',
     'dataprep.apps.DataprepConfig',
     'openrefine.apps.OpenrefineConfig',
+    'createwikidata.apps.CreatewikidataConfig',
+
 ]
 
 MIDDLEWARE = [
