@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content%}
+
+    {% if nextReady %}
+        <div class="container intro">
+            <p class="success">{{ response }}</p>
+            <p>Once complete click 'Continue'.</p>
+        </div>
+        <a href="/createwikidata" class="btn btn-primary start">Continue</a>
+    {% else %}
+        {% if file == '' %}
+            <div class="container intro">
+                <p class="fail">No file ready for open refine process.</p>
+                <a href="/" class="btn btn-primary back">Back</a>
+            </div>
+        {% else %}
+            <div class="container intro">
+                <p>{{file}}</p>
+                <p>Start 'Open Refine' locally and press 'Start' here.</p>
+                <form action="#" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Start" class="btn btn-primary start">
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}
