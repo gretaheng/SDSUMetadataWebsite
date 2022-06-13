@@ -73,17 +73,13 @@ def dataPrep(basePath, filename, collegeQnum, fieldQnum, departmentQnum, website
                 status = response.status_code
                 if status == 200:
                     df1.at[i, "web"] = website
-                print("website ", website)
-
-        print("Success", i)
 
         # When no school is present, bot does not add degree to wikidata. Overload for open refine. Hence removed
         if df1.at[i, "education.school"] == '':
             df1.at[i, "education.degree"] = ''
 
-        # CHANGE FILEPATH AND FILENAME
-        df1.to_csv(basePath + filename + "_ready4or.csv", encoding="utf8")
-        print("File save Success.")
+    # CHANGE FILEPATH AND FILENAME
+    df1.to_csv(basePath + filename + "_ready4or.csv", encoding="utf8")
 
     print("Total records in new file: ", len(df1))
 
