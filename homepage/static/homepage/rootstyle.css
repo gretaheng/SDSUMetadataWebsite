@@ -34,3 +34,12 @@
     color: darkred;
 }
 
+.overlay-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: firebrick;
+    font-weight: bold;
+}
+
+

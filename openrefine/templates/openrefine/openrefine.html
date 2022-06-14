@@ -1,31 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content%}
-
-    {% if nextReady %}
-        <div class="container intro">
-            <p class="success">{{ response }}</p>
-            <p>Once complete click 'Continue'.</p>
-        </div>
-        <a href="/createwikidata" class="btn btn-primary start">Continue</a>
-    {% else %}
-        {% if file == '' %}
-            <div class="container intro">
-                <p class="fail">No file ready for open refine process.</p>
-                <a href="/" class="btn btn-primary back">Back</a>
+{% block content %}
+    <div class="container intro openrefine">
+        {% if nextReady %}
+            <div class="container">
+                <p class="success">{{ response }}</p>
+                <p>Once complete click 'Continue'.</p>
             </div>
+            <a href="/createwikidata" class="btn btn-primary start">Continue</a>
         {% else %}
-            <div class="container intro">
-                <p>{{file}}</p>
-                <p>Start 'Open Refine' locally and press 'Start' here.</p>
-                <form action="#" method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="Start" class="btn btn-primary start">
-                </form>
-            </div>
+            {% if file == '' %}
+                <div class="container">
+                    <p class="fail">No file ready for open refine process.</p>
+                    <a href="/" class="btn btn-primary back">Back</a>
+                </div>
+            {% else %}
+                <div class="container">
+                    <p>{{file}}</p>
+                    <p>Start 'Open Refine' locally and press 'Start' here.</p>
+                    <form action="#" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Start" class="btn btn-primary start">
+                    </form>
+                </div>
+            {% endif %}
         {% endif %}
-    {% endif %}
+    </div>
+
+    <script>
+        $(function(){
+            $('form').on('submit', function(e){
+                $('body').append('<div class="loading overlay-box" id="loading">' +
+                    'Working...</div>')
+                document.getElementsByClassName('openrefine')[0].style.filter = "blur(5px)";
+                document.getElementsByClassName('start')[0].setAttribute("disabled", "");
+
+            });
+        })
+    </script>
 
 {% endblock %}

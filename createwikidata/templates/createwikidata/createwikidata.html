@@ -2,36 +2,56 @@
 {% load static %}
 
 {% block content %}
-    <div class="container dataprep">
+    <div class="container intro createwikidata">
 
         {% if contextData.message %}
             {% if 'SUCCESS' in contextData.message %}
-                <div class="container intro">
+                <div class="container">
                     <p class="success">{{contextData.message}}</p>
                     <br/>
                     <p>Process complete. Please refer file provided for ids of new items.</p>
-                    <a href="{% url 'downloadFile' %}" download class="btn btn-secondary back">Download</a>
-
+                    <a href="{% url 'downloadFile' %}" download class="btn btn-secondary back"
+                       id="download-button" onclick="changeText()">Download</a>
+                    <div id="download-button-update"></div>
                     <a href = "/" class="btn btn-primary start">Home</a>
                 </div>
             {% else %}
-                <div class="container intro">
+                <div class="container">
                     <p class="fail">Failed{{ contextData.message }}</p>
                     <a href="/" class="btn btn-primary back">Home</a>
                 </div>
            {% endif %}
 
         {% else %}
-            <h4>Please select the file for creation of wikidata.</h4> <br/>
-            <form action="" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.as_p }}
+            <div class="container">
+                <h4>Please select the file for creation of wikidata.</h4> <br/>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
 
-                <input type="submit" value="Start" class="btn btn-primary start">
+                    <input type="submit" value="Start" class="btn btn-primary start">
 
-            </form>
+                </form>
+            </div>
 
         {% endif %}
     </div>
+
+    <script>
+        $(function(){
+            $('form').on('submit', function(e){
+                $('body').append('<div class="loading overlay-box" id="loading">' +
+                    'Working...</div>')
+                document.getElementsByClassName('createwikidata')[0].style.filter = "blur(5px)";
+                document.getElementsByClassName('start')[0].setAttribute("disabled", "");
+            });
+        });
+    </script>ß
+
+    <script>
+        function changeText(){
+            document.getElementById('download-button').innerHTML = 'Downloaded';
+        }
+    </script>
 
 {% endblock %}

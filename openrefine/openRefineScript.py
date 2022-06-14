@@ -90,7 +90,7 @@ def openRefineSteps(filename):
     # Final reconcile submit button
     driver.find_element(by=By.XPATH, value="/html/body/div[5]/div/div[3]/table/tbody/tr/td[2]/button[1]").click()
     print("Adjust the degree values.")
-    timerprint(30)
+    timerprint(10)
 
     # add DegreeQnum
     # Column Dropdown and Reconcile option
@@ -130,7 +130,7 @@ def openRefineSteps(filename):
     # Final reconcile submit button
     driver.find_element(by=By.XPATH, value="/html/body/div[5]/div/div[3]/table/tbody/tr/td[2]/button[1]").click()
     print("Adjust the school values.")
-    timerprint(30)
+    timerprint(10)
 
     # add SchoolQnum
     # Column Dropdown and Reconcile option

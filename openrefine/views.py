@@ -21,7 +21,6 @@ def openrefine(request):
         form = OpenRefineForm(request.POST)
         print("Ready to Process ", ready4or)
         response = openRefineSteps(ready4or)
-        timerprint(10)
         nextReady = True
         [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
         return render(request, 'openrefine/openrefine.html', {'nextReady': nextReady, 'response': response})

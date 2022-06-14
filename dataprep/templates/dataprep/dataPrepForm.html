@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block content %}
-    <div class="container dataprep">
+    <div class="container intro dataprep">
 
         {% if contextData.message %}
             {% if 'SUCCESS' in contextData.message %}
-                <div class="container intro">
+                <div class="container">
                     <p class="success">{{contextData.message}}</p>
                     <br/>
                     <p>Next Step: Start 'Open Refine' locally and press 'Next'.</p>
                     <a href = "/openrefine" class="btn btn-primary start">Next</a>
                 </div>
             {% else %}
-                <div class="container intro">
+                <div class="container">
                     <p class="fail">Failed{{ contextData.message }}</p>
                     <a href="/" class="btn btn-primary back">Back</a>
                 </div>
@@ -30,6 +30,18 @@
             </form>
 
         {% endif %}
+
     </div>
+
+    <script>
+        $(function(){
+            $('form').on('submit', function(e){
+                $('body').append('<div class="loading overlay-box" id="loading">' +
+                    'Working...</div>')
+                document.getElementsByClassName('dataprep')[0].style.filter = "blur(5px)";
+                document.getElementsByClassName('start')[0].setAttribute("disabled", "");
+            });
+        })
+    </script>
 
 {% endblock %}
