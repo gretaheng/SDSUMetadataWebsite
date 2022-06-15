@@ -4,7 +4,6 @@ from django.db import models
 
 class CreateWikidata(models.Model):
     tenureOrEmeritus = models.CharField(max_length=1)
-    destination = models.CharField(max_length=200)
     sourceFile = models.FileField(default='/User/')
 
     def __str__(self):

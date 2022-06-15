@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.createwikidata, name='createwikidata'),
-    path('download_csv/', views.downloadFile, name='downloadFile'),
+    path('download_final_file/', views.downloadFinalFile, name='downloadFinalFile'),
 
 ]
 

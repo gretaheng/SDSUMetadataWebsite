@@ -9,12 +9,16 @@
                 <div class="dataprep-response">
                     <p class="success">{{message}}</p>
                     <p>Next Step: 'Refining' Press 'Next'.</p>
-                    <a href = "/openrefine" class="btn btn-primary">Next <i class="fa-solid fa-arrow-right-long"></a>
+                    <p class="info">Download now to do refining manually.</p>
+                    <a href="{% url 'downloadReady4or' %}" download class="btn btn-secondary back"
+                       id="download-button"><i class="fa-solid fa-down-long"></i>&nbsp Download _ready4or file</a>
+                    <div id="download-button-update"></div>
+                    <a href = "/openrefine" class="btn btn-primary start">Next &nbsp<i class="fa-solid fa-arrow-right-long"></a>
                 </div>
             {% else %}
                 <div class="dataprep-response">
                     <p class="fail">{{ message }}</p>
-                    <a href="/" class="btn btn-primary"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
+                    <a href="/" class="btn btn-primary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
                 </div>
            {% endif %}
 

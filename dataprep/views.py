@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -7,6 +7,8 @@ from django.conf import settings
 from .models import DataPrep
 from .dataPrepScript import runDataPrepForForm
 from pathlib import Path
+import glob
+import os
 
 
 # Create your views here.
@@ -39,3 +41,16 @@ def dataprep(request):
         form = DataPrepForm
 
     return render(request, 'dataprep/dataPrepForm.html', {'form': form})
+
+def downloadReady4or(request):
+    filepath = settings.MEDIA_ROOT
+    file = glob.glob(filepath + "/**_ready4or.csv", recursive=True)
+    download = file[0] if len(file) > 0 else ''
+
+    if os.path.exists(download):
+        with open(download, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(download)
+            return response
+    else:
+        return HttpResponse(status=404)

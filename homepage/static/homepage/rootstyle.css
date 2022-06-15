@@ -8,9 +8,13 @@
 }
 
 .landing-page{
-    margin-top: 10%;
+    margin-top: 9%;
     text-align: center;
 
+}
+
+.home-para{
+    text-align: justify; !important;
 }
 
 .intro{
