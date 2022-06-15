@@ -7,7 +7,9 @@ cffi==1.15.0
 charset-normalizer==2.0.12
 cryptography==37.0.2
 Django==4.0.5
+django-jquery==3.1.0
 django-livereload-server==0.4
+fontawesomefree==6.1.1
 h11==0.13.0
 idna==3.3
 numpy==1.22.4

@@ -84,15 +84,14 @@ def dataPrep(basePath, filename, collegeQnum, fieldQnum, departmentQnum, website
     print("Total records in new file: ", len(df1))
 
 def runDataPrepForForm(basePath, filename, collegeQnum, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage):
+    response = ''
+
     try:
         dataPrep(basePath, filename, collegeQnum, fieldQnum, departmentQnum, websiteBaseUrl, allOnePage)
     except BaseException as error:
-        return 'An exception occurred: {} {}'.format(error, basePath+filename)
+        response = 'FAIL: An error occurred: {}'.format(error)
 
-    respond = {
-        'message': 'SUCCESS: Data preparation completed. New csv file with \"ready4or\" as suffix created.',
-        'file': basePath+filename
-    }
-    return respond
+    if response == '':
+        response = 'SUCCESS: Data preparation completed. New csv file \"ready4or\" ready for refining .'
 
-# python dataPrep.py
+    return response

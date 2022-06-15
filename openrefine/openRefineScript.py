@@ -25,7 +25,7 @@ def timerprint(seconds):
 
 
 def openRefineSteps(filename):
-    toBeAddedLater = []
+
     # run "xattr -d com.apple.quarantine chromedriver in the chromedriver folder for macOS
     driver = webdriver.Chrome(executable_path='/Users/sprasad/Documents/chromedriver',
                               options=chrome_options)

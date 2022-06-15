@@ -20,8 +20,13 @@ def openrefine(request):
     if request.method == "POST":
         form = OpenRefineForm(request.POST)
         print("Ready to Process ", ready4or)
-        response = openRefineSteps(ready4or)
-        nextReady = True
+        try:
+            response = openRefineSteps(ready4or)
+        except BaseException as error:
+            response = 'FAIL: An error occurred: {}'.format(error)
+
+        nextReady = False if 'FAIL' in response else True
+
         [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
         return render(request, 'openrefine/openrefine.html', {'nextReady': nextReady, 'response': response})
     else:

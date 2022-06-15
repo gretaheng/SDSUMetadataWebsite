@@ -13,7 +13,7 @@ def createwikidata(request):
     if request.method == "POST":
         form = CreateWikidataForm(request.POST, request.FILES)
         faculties = CreateWikidata()
-
+        respond = ''
         if form.is_valid():
             faculties.tenureOrEmeritus = form.cleaned_data['tenureOrEmeritus']
             faculties.sourceFile = form.cleaned_data['sourceFile']
@@ -22,24 +22,17 @@ def createwikidata(request):
             fileName = str(faculties.sourceFile)
             filePath = settings.MEDIA_ROOT+'/'
             faculties.save()
-            contextData = {}
+
             try:
-                respond, faculties.destination = createWikidataItems(faculties.tenureOrEmeritus, sourceFilePath=filePath,
+                respond = createWikidataItems(faculties.tenureOrEmeritus, sourceFilePath=filePath,
                                                                  fileName=fileName, destination=settings.MEDIA_ROOT+'/')
-                faculties.save()
-
-                contextData = {
-                    'message':  respond,
-                }
             except:
-                contextData = {
-                    'message': "Error",
-                }
+                respond = 'FAIL: An error occurred: {}'.format(error)
 
-            if ('FAIL' in contextData['message']) or ('No file' in contextData['message']):
+            if 'FAIL' in respond:
                 [f.unlink() for f in Path(settings.MEDIA_ROOT+'/').glob("*") if f.is_file()]
 
-            return render(request, 'createwikidata/createwikidata.html', context={'contextData': contextData})
+            return render(request, 'createwikidata/createwikidata.html', context={'message': respond})
     else:
         form = CreateWikidataForm
 
@@ -49,7 +42,7 @@ def downloadFile(request):
     filepath = settings.MEDIA_ROOT
     file = glob.glob(filepath + "/**_final.csv", recursive=True)
     download = file[0] if len(file) > 0 else ''
-    print("File found")
+
     if os.path.exists(download):
         with open(download, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")

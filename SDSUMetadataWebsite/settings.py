@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Live reload option
     'livereload',
     'jquery',
+    'fontawesomefree',
 
     # Project Apps
     'homepage.apps.HomepageConfig',
