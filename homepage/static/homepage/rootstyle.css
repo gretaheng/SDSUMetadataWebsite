@@ -3,15 +3,26 @@
     margin-top: 2%;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 42%;
     height: 5em;
+}
+
+.landing-page{
+    margin-top: 10%;
+    text-align: center;
+
 }
 
 .intro{
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
-    color: black;
     margin-top: 5%;
     text-align: justify;
+    margin-bottom: 5%;
+}
+
+.info {
+    font-size: small;
+    color: dimgray;
 }
 
 .start {
@@ -34,3 +45,31 @@
     color: darkred;
 }
 
+.overlay-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: firebrick;
+    font-weight: bold;
+}
+
+.page-form {
+    align-items: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+.openrefine-form {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.dataprep-response {
+    padding: 70px 0;
+    text-align: center;
+}
+
+.createwikidata-response{
+    padding: 70px 0;
+    text-align: center;
+}

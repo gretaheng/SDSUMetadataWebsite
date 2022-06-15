@@ -226,6 +226,6 @@ def createWikidataItems(typeFaculty, sourceFilePath, fileName, destination):
     elif typeOfFaculty == 'e':
         read_csv_emeritus(source, destination)
     else:
-        return "\nFAIL: Please enter proper code for type of faculty.", destination
+        return "FAIL: Please enter proper code for type of faculty."
 
-    return "\nSUCCESS", destination
+    return "SUCCESS!!!"

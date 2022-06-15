@@ -24,14 +24,17 @@ def dataprep(request):
             faculties.file = form.cleaned_data['file']
             faculties.save()
 
-            respond = runDataPrepForForm(settings.MEDIA_ROOT+'/', str(faculties.file), faculties.collegeQnum, faculties.fieldQnum,
+            try:
+                respond = runDataPrepForForm(settings.MEDIA_ROOT+'/', str(faculties.file), faculties.collegeQnum, faculties.fieldQnum,
                                          faculties.departmentQnum, faculties.websiteBaseUrl,
                                          faculties.allOnePage)
+            except BaseException as error:
+                respond = 'FAIL: An error occurred: {}'.format(error)
 
-            if ('error' in respond['message']) or ('No file' in respond['message']):
-                [f.unlink() for f in Path(settings.MEDIA_ROOT+'/').glob("*") if f.is_file()]
-            print("Going to openrefine.")
-            return render(request, 'dataprep/dataPrepForm.html', context={'contextData': respond})
+            if 'FAIL' in respond:
+                [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
+
+            return render(request, 'dataprep/dataPrepForm.html', context={'message': respond})
     else:
         form = DataPrepForm
 
