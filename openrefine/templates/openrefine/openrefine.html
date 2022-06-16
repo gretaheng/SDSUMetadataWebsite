@@ -7,23 +7,29 @@
             <div class="createwikidata-response">
                 <p class="success">{{ response|linebreaksbr }}</p>
                 <p>Once complete click 'Next'.</p>
-                <a href="/createwikidata" class="btn btn-primary">Next <i class="fa-solid fa-arrow-right-long"></a>
+                <a href="/createwikidata" class="btn btn-primary">Next &nbsp<i class="fa-solid fa-arrow-right-long"></i></a>
             </div>
         {% else %}
             {% if file == '' %}
                 <div class="createwikidata-response">
                     <p class="fail">{{ response }}</p>
                     <p class="fail">No File 'ready4or'</p>
-                    <a href="/" class="btn btn-primary"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
+                    <a href="/" class="btn btn-primary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
                 </div>
             {% else %}
                 <div class="openrefine-form">
-                    <p>Start 'Open Refine' locally and press 'Start' here.</p>
+                    <p>Start 'Open Refine' locally and press 'Start' here for semi-automatic refining.</p>
                     <form action="#" method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <input type="submit" value="Start" class="btn btn-primary">
+
+                        <p>To skip semi-automatic refining and jump to creating wikidata-items, press 'Skip'.</p>
+                        <p class="info">When skipping: make sure to complete refining step manually and keep the new csv exported handy.</p>
+
+                        <a href="/createwikidata" class="btn btn-secondary back">Skip &nbsp<i class="fa-solid fa-forward"></i></a>
+                        <input type="submit" value="Start" class="btn btn-primary start">
                     </form>
+
                 </div>
             {% endif %}
         {% endif %}

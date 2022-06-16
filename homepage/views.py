@@ -6,3 +6,6 @@ from django.conf import settings
 def index(request):
     [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
     return render(request, 'index.html', {})
+
+def options(request):
+    return render(request, 'options.html', {})
