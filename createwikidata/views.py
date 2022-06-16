@@ -17,8 +17,6 @@ def createwikidata(request):
         if form.is_valid():
             faculties.tenureOrEmeritus = form.cleaned_data['tenureOrEmeritus']
             faculties.sourceFile = form.cleaned_data['sourceFile']
-
-            faculties.destination = ''
             fileName = str(faculties.sourceFile)
             filePath = settings.MEDIA_ROOT+'/'
             faculties.save()
@@ -26,7 +24,7 @@ def createwikidata(request):
             try:
                 respond = createWikidataItems(faculties.tenureOrEmeritus, sourceFilePath=filePath,
                                                                  fileName=fileName, destination=settings.MEDIA_ROOT+'/')
-            except:
+            except BaseException as error:
                 respond = 'FAIL: An error occurred: {}'.format(error)
 
             if 'FAIL' in respond:
@@ -38,7 +36,7 @@ def createwikidata(request):
 
     return render(request, 'createwikidata/createwikidata.html', {'form': form})
 
-def downloadFile(request):
+def downloadFinalFile(request):
     filepath = settings.MEDIA_ROOT
     file = glob.glob(filepath + "/**_final.csv", recursive=True)
     download = file[0] if len(file) > 0 else ''
