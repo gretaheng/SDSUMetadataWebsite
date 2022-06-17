@@ -5,5 +5,6 @@ venv/
 **/__pycache__/
 .idea/
 apicache-py3/
-#user-config.py
-#user-password.py
+driver/
+user-config.py
+user-password.py
