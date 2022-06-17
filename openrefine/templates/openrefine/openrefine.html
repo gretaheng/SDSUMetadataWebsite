@@ -5,16 +5,17 @@
     <div class="intro openrefine" id="openrefine">
         {% if nextReady %}
             <div class="createwikidata-response">
-                <p class="success">{{ response|linebreaksbr }}</p>
+                <p class="success createwikidata-response-positive">{{ response|linebreaksbr }}</p>
                 <p>Once complete click 'Next'.</p>
-                <a href="/createwikidata" class="btn btn-primary">Next &nbsp<i class="fa-solid fa-arrow-right-long"></i></a>
+                <a href="/" class="btn btn-success back"><i class="fa-solid fa-house"></i>&nbsp Home</a>
+                <a href="/createwikidata" class="btn btn-primary start">Next &nbsp<i class="fa-solid fa-arrow-right-long"></i></a>
             </div>
         {% else %}
             {% if file == '' %}
                 <div class="createwikidata-response">
                     <p class="fail">{{ response }}</p>
                     <p class="fail">No File 'ready4or'</p>
-                    <a href="/" class="btn btn-primary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
+                    <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
                 </div>
             {% else %}
                 <div class="openrefine-form">
@@ -26,7 +27,7 @@
                         <p>To skip semi-automatic refining and jump to creating wikidata-items, press 'Skip'.</p>
                         <p class="info">When skipping: make sure to complete refining step manually and keep the new csv exported handy.</p>
 
-                        <a href="/createwikidata" class="btn btn-secondary back">Skip &nbsp<i class="fa-solid fa-forward"></i></a>
+                        <a href="/createwikidata" class="btn btn-secondary back skip">Skip &nbsp<i class="fa-solid fa-forward"></i></a>
                         <input type="submit" value="Start" class="btn btn-primary start">
                     </form>
 
@@ -42,7 +43,7 @@
                     '<i class="fa-solid fa-list-check"></i> Working...</div>')
                 document.getElementsByClassName('openrefine')[0].style.filter = "blur(5px)";
                 document.getElementsByClassName('start')[0].setAttribute("disabled", "");
-
+                document.getElementsByClassName('skip')[0].classList.add('disabled')
             });
         })
     </script>

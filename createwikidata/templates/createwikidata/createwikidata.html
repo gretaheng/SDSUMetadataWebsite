@@ -9,16 +9,16 @@
                 <div class="createwikidata-response">
                     <p class="success">{{message}}</p>
                     <p>Process complete. Please download the file for IDs of new items.</p>
-                    <a href="{% url 'downloadFinalFile' %}" download class="btn btn-secondary back"
+                    <a href="{% url 'downloadFinalFile' %}" download class="btn btn-warning back"
                        id="download-button" onclick="updateHome()"><i class="fa-solid fa-down-long"></i>&nbsp Download</a>
                     <div id="download-button-update"></div>
-                    <button onclick="location.href='/'" class="btn btn-primary start" id="home-button" disabled>
+                    <button onclick="location.href='/'" class="btn btn-success start" id="home-button" disabled>
                         <i class="fa-solid fa-house"></i>&nbsp Home</button>
                 </div>
             {% else %}
                 <div class="createwikidata-response">
                     <p class="fail">Failed{{ message }}</p>
-                    <a href="/" class="btn btn-primary"><i class="fa-solid fa-house"></i>&nbsp Home</a>
+                    <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
                 </div>
            {% endif %}
 
