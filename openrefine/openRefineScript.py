@@ -28,17 +28,17 @@ def timerprint(seconds):
 
 
 def openRefineSteps(filename):
-    driver = {}
 
     if platform.system() == 'Darwin' or platform.system() == 'Linux':
-    # mac os code
+    # mac os code as mac closes window at the end if used ChromeDriverManager. Need the executed window open.
     # run "xattr -d com.apple.quarantine chromedriver in the chromedriver folder for macOS
         driver = webdriver.Chrome(executable_path='/Users/sprasad/Documents/chromedriver',
                               options=chrome_options)
-
     elif platform.system() == 'Windows':
     # Windows code
         driver = webdriver.Chrome(ChromeDriverManager().install())
+    else:
+        return "FAIL: Chromedriver issues."
 
     driver.get("http://127.0.0.1:3333/")
     driver.maximize_window()
