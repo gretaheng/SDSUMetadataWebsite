@@ -13,7 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import sys
 from selenium import webdriver
 # For Windows
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
@@ -31,11 +31,12 @@ def openRefineSteps(filename):
 
     # mac os code
     # run "xattr -d com.apple.quarantine chromedriver in the chromedriver folder for macOS
-    # driver = webdriver.Chrome(executable_path=r"C:\\Users\\sprasad\\Documents\\Project\\SDSUMetadataWebsite\\driver\\chromedriver.exe",
-    #                           options=chrome_options)
+    driver = webdriver.Chrome(executable_path='/Users/sprasad/Documents/chromedriver',
+                              options=chrome_options)
 
     # Windows code
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    # driver = webdriver.Chrome(ChromeDriverManager().install())
+
     driver.get("http://127.0.0.1:3333/")
 
     # line 32, 33 specific to library monitors.
@@ -177,18 +178,6 @@ def openRefineSteps(filename):
     time.sleep(2)
     # Final reconcile submit button
     driver.find_element(by=By.XPATH, value="/html/body/div[5]/div/div[3]/table/tbody/tr/td[2]/button[1]").click()
-
-    # NEED TO BE DONE AFTER MANUAL REVIEW
-    # #add FQnum
-    # # Column Dropdown and Reconcile option
-    # driver.find_element(by = By.XPATH, value = "//*[@id='view-panel']/div[2]/table/thead/tr/th[5]/div[1]/a").click()
-    # # Add side column option
-    # driver.find_element(by = By.XPATH, value = "/html/body/div[5]/a[8]/table/tbody/tr/td[1]").click()
-    # # Set XQnum input
-    # driver.find_element(by = By.XPATH, value = "/html/body/div[6]/a[6]").click()
-    # driver.find_element(by = By.XPATH, value = '/html/body/div[5]/div/form/div/div[2]/div/table/tbody/tr/td[2]/input').send_keys("FQnum")
-    # # Add
-    # driver.find_element(by = By.XPATH, value = '/html/body/div[5]/div/form/div/div[3]/input').click()
 
     time.sleep(4)
 
