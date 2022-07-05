@@ -35,6 +35,7 @@ def dataprep(request):
 
             if 'FAIL' in respond:
                 [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
+                print("Error occurred, all files deleted.")
 
             return render(request, 'dataprep/dataPrepForm.html', context={'message': respond})
     else:

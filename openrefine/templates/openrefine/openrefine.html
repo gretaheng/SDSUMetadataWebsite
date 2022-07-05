@@ -17,6 +17,11 @@
                     <p class="fail">No File 'ready4or'</p>
                     <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
                 </div>
+            {% elif 'FAIL' in response %}
+                <div class="createwikidata-response">
+                    <p class="fail">{{ response }}</p>
+                    <a href="/" class="btn btn-secondary"><i class="fa-solid fa-arrow-left-long"></i>&nbsp Begin Again</a>
+                </div>
             {% else %}
                 <div class="openrefine-form">
                     <p>Start 'Open Refine' locally and press 'Start' here for semi-automatic refining.</p>

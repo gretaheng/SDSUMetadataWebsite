@@ -12,8 +12,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 from selenium import webdriver
-# For Windows
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
+import platform
 
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)
@@ -29,18 +29,18 @@ def timerprint(seconds):
 
 def openRefineSteps(filename):
 
-    # mac os code
+    if platform.system() == 'Darwin' or platform.system() == 'Linux':
+    # mac os code as mac closes window at the end if used ChromeDriverManager. Need the executed window open.
     # run "xattr -d com.apple.quarantine chromedriver in the chromedriver folder for macOS
-    driver = webdriver.Chrome(executable_path='/Users/sprasad/Documents/chromedriver',
+        driver = webdriver.Chrome(executable_path='/Users/sprasad/Documents/chromedriver',
                               options=chrome_options)
-
+    elif platform.system() == 'Windows':
     # Windows code
-    # driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+    else:
+        return "FAIL: Chromedriver issues."
 
     driver.get("http://127.0.0.1:3333/")
-
-    # line 32, 33 specific to library monitors.
-    # driver.set_window_position(-1000, 0)
     driver.maximize_window()
 
     wait = WebDriverWait(driver, 20)
@@ -98,7 +98,7 @@ def openRefineSteps(filename):
     # Final reconcile submit button
     driver.find_element(by=By.XPATH, value="/html/body/div[5]/div/div[3]/table/tbody/tr/td[2]/button[1]").click()
     print("Adjust the degree values.")
-    timerprint(10)
+    timerprint(15)
 
     # add DegreeQnum
     # Column Dropdown and Reconcile option
@@ -138,7 +138,7 @@ def openRefineSteps(filename):
     # Final reconcile submit button
     driver.find_element(by=By.XPATH, value="/html/body/div[5]/div/div[3]/table/tbody/tr/td[2]/button[1]").click()
     print("Adjust the school values.")
-    timerprint(10)
+    timerprint(15)
 
     # add SchoolQnum
     # Column Dropdown and Reconcile option
