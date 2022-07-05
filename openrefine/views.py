@@ -23,7 +23,7 @@ def openrefine(request):
 
         if ready4or == '':
             nextReady = False
-            return render(request, 'openrefine/openrefine.html', {'nextReady': nextReady })
+            return render(request, 'openrefine/openrefine.html', {'nextReady': nextReady})
         else:
             try:
                 response = openRefineSteps(ready4or)
@@ -33,6 +33,8 @@ def openrefine(request):
             nextReady = False if 'FAIL' in response else True
 
             [f.unlink() for f in Path(settings.MEDIA_ROOT + '/').glob("*") if f.is_file()]
+            print("All files deleted, after refining.")
+
             return render(request, 'openrefine/openrefine.html', {'nextReady': nextReady, 'response': response})
     else:
         form = OpenRefineForm
