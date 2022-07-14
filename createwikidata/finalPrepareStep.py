@@ -162,6 +162,14 @@ def read_csv_tenure(filename, output):
             if not pd.isnull(r["SchoolQnum"]):
                 check_pro_in_sub(qnum, "P69", r, r["SchoolQnum"])
     df1.to_csv(output)
+    # For local
+    googleSheets = df1[['FacultyNameForWiki', 'FQnum']].copy()
+    googleSheets['Wikidata Link'] = 'https://www.wikidata.org/wiki/' + df1['FQnum']
+    googleSheets['LC'] = df1[['LCnum']].copy()
+    googleSheets.rename(columns={'FacultyNameForWiki': 'Faculty Name', 'FQnum': 'Wikidata ID'},
+                        inplace=True)
+    googleSheets.to_csv('/Users/sprasad/Downloads/googleSheetsTenure.csv')
+
     return df1
 
 
@@ -207,6 +215,14 @@ def read_csv_emeritus(filename, output):
             if not pd.isnull(r["SchoolQnum"]):
                 check_pro_in_sub(qnum, "P69", r, r["SchoolQnum"])
     df1.to_csv(output)
+    # For local
+    googleSheets = df1[['FacultyNameForWiki', 'FQnum']].copy()
+    googleSheets['Wikidata Link'] = 'https://www.wikidata.org/wiki/' + df1['FQnum']
+    googleSheets['LC'] = df1[['LCnum']].copy()
+    googleSheets.rename(columns={'FacultyNameForWiki': 'Faculty Name', 'FQnum': 'Wikidata ID'},
+                        inplace=True)
+    googleSheets.to_csv('/Users/sprasad/Downloads/googleSheetsEmeritus.csv')
+
     return df1
 
 

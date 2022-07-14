@@ -29,8 +29,8 @@ def dataPrep(basePath, filename, collegeQnum, fieldQnum, departmentQnum, website
 
     filename = filename[:len(filename) - 4]
 
-    # df = pd.read_csv(file_name,encoding='latin-1')
-    df = pd.read_csv(file_name)
+    df = pd.read_csv(file_name, encoding='latin-1')
+    # df = pd.read_csv(file_name)
     print("Total records in original file: ", len(df))
 
     df = df.drop(columns=['Unnamed: 0', 'research.interests', 'title'])
